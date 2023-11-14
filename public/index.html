@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- MAIN FOR LOCATION BASED GRAPGHS -->
+    <script src="js/locations.js" defer></script>
+
+    <!-- D3 FORCED DIRECT SCRIPT -->
+    <script src="js/d3.js"></script>
+
+     <!-- MAIN FOR IMAGE GENERATION -->
+    <script src="js/main.js" defer></script>
+
+
+
+    <title>WizActor Interface</title>
+    
+  </head>
+  <body onload="main()">
+    <div class="grid-container">
+    
+<!-- Charecter panel-->
+<div >
+            <div>
+                <section >
+                  <div class="image-container">
+                     <h2 class="msg"></h2>
+                    <img class="image" src="" alt="" id="image" />
+                  </div>
+                </section>
+            </div>
+              
+            <h4 style="padding: 1px; text-align: left;" id="c1"> Click to look at charecters!</h4>
+
+            <!-- Status and traits buttons-->
+            <div>
+                <button id="showStatsBtn"> Statuses</button> 
+                <button id="showTraitsBtn"> Traits</button> 
+                <button id="trackBtn"> Track</button> 
+            </div>
+      <!-- Status and traits-->
+    <div id="tableContainer1">
+        <table class="table" id="myTable"> 
+                <tbody> 
+                        </tr>
+                        <td class="statuses"> Pronouns</td>
+                        <td id="p1"> unknown </td>
+                        </tr>
+
+                        </tr>
+                        <td class="statuses"> Age</td>
+                        <td id="p2">  unknown</td>
+                        </tr>
+
+                        </tr>
+                        <td class="statuses"> Last Birthday</td>
+                        <td id="p3">  unknown</td>
+                        </tr>
+
+                        
+                </tbody>
+        </table>
+    </div>
+    <div id="tableContainer2">
+        <div class="scrollmenu">   
+            <ul>
+                <li id="trait">List Item 1</li>
+
+                <!-- Add more list items as needed -->
+            </ul>
+        </div>
+    </div>
+
+
+    </div>
+</div>
+
+<!-- HOTBAR-->
+<!-- <div class="hotbar" id="myTable1">
+    
+        <tbody>
+    <tr>
+    <td>
+        <text>Character Name: </text>
+        <text>Character state</text>
+        <button>X</button>
+    </td>
+    </tr>
+
+    <tr>
+        <td>
+            <text>Hi this is the hotbar: </text>
+            <text>hotbar state</text>
+            <button>X</button>
+        </td>
+        </tr>
+    </tbody>
+   </div>
+
+<div> -->
+
+
+<!-- MODAL-->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>All connections</p>
+    
+      <div id="mini-container">
+      <svg2 
+      
+            id="theMiniGraph" 
+            class="chart2"
+        ></svg2> 
+    </div> 
+    <button id="saveBtn"> Save connections </button>
+
+    </div>
+  
+  </div>
+<!-- End of Modall-->
+
+<!-- Graph Buttons-->
+<div class="relationshipButtons">
+    <div class="table">
+        <text id="EventLog"></text>
+        <!-- <button type="button" id="myBtn">View Connections</button>  -->
+    </div>
+  
+    <button id="buttonAll" class="rButtons">Show All</button> 
+    <button id="buttonFriends" class="rButtons">Friends</button> 
+    <button id="buttonRivals" class="rButtons">Rivals</button> 
+    <button id="buttonNemesis" class="rButtons">Nemesis</button> 
+    <button id="buttonMutalLove" class="rButtons">Mutual loves</button> 
+
+</div>
+<!-- End of relationship buttons div-->
+
+<!-- Time Period Buttons-->
+<div class="timeButtons">
+    <div>
+        <text id="season">Time Period</text> 
+    </div>
+    <button type="button" id="backwardButton">Backwards in Time</button> 
+    <button type="button" id="forwardButton">Forwards in Time</button> 
+
+</div>
+<!-- End of relationship buttons div-->
+
+<!-- Location Buttons-->
+<div class="locationButtons" id="locationB">
+    <div class="roomButtons" id="roomB">
+        
+    </div>
+
+<!-- 
+    <button type="button">location 1</button> 
+    <button type="button">Forwards in Time</button>  -->
+
+</div>
+<!-- End of relationship buttons div-->
+
+
+</div>
+      <!-- Image generater square in bottom right corner-->
+      <!--Forced Direct Graph -->
+      <!-- <div class="svg-container"> -->
+        <div id="graph-container">
+        <svg 
+    
+            id="theGraph" 
+            class="chart"
+        >
+        </svg>
+    </div>
+      <!-- </div> -->
+    
+
+    
+<!-- Filter button and other stuff-->
+<!--== <div id="characterFilterArea" class="left">
+  Filter charcters here!
+      <input type="checkbox"  id="selectAll" onchange='handleSelectAll(this);' value="SelectAll">Select All
+      
+  <div id="characterCheckboxes"> 
+      <input type="checkbox" name="personCheckbox" id="vehicle1" onchange='handleCharacterCheckbox(this);'  value="Bike"> Bike
+      
+      <input type="checkbox" name="personCheckbox" id="vehicle2" onchange='handleCharacterCheckbox(this);'  value="Car"> Car
+  
+      <input type="checkbox" name="personCheckbox" id="vehicle3" onchange='handleCharacterCheckbox(this);'  value="Boat"> Boat
+  </div>
+
+  <div class="slidecontainer">
+      <input type="range" min="1" max="100" value="12" class="slider" id="relationshipRange">
+      <p>Relationship Threshold: <span id="sliderValueSpan">12</span></p>
+  </div>
+  
+</div>
+
+
+<div class="left">
+  <div class="left" id="buttonArea">
+      <button id="findAFriend" onclick="findAFriendPressed()">Find a Friend</button>
+      <button id="findANemesis" onclick="findANemesisPressed()">Find an Nemesis</button>
+      <button id="findARival" onclick="findARivalPressed()">Find a Rival</button>
+      <button id="findAMutualLove" onclick="findAMutualLovePressed()">Find a Mutual Love</button> 
+      
+      <BR><BR><BR>
+
+      <button id="findAllFriends" onclick="findAllFriendsPressed()">Find all Friends</button>
+      <button id="findAllNemesis" onclick="findAllNemesisPressed()">Find every Nemesis</button>
+      <button id="findAllRivals" onclick="findAllRivalsPressed()">Find all Rivals</button>
+      <button id="findAllMutualLoves" onclick="findAllMutualLovesPressed()">Find all Mutual Loves</button>
+          
+  </div>
+
+</div>  -->
+
+
+
+<!-- D3 import-->
+<script type="module">
+
+    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+    
+    const div = d3.selectAll("div");
+    
+    </script>
+
+  </body>
+</html>
+
+<!-- SCRIPTS-->
+
+<!-- used for arrowheads for some reason -- do not actually know what this does. 
+I guess it is just a way to set multiple attributes at once?
+"This module adds multi-value syntax to selections and transitions, allowing you to set multiple attributes, styles or properties simultaneously with more concise syntax."
+https://github.com/d3/d3-selection-multi -->
+<script src="https://d3js.org/d3-selection-multi.v1.js"></script>
+<!-- https://www.youtube.com/watch?v=y2-sgZh49dQ -->
+<script> src="js/script.js" </script>
+
+<script> // This script handles displaying the status and traits tables when their buttons are clicked
+const showStatsBtn = document.getElementById("showStatsBtn");
+const showTableBtn = document.getElementById("showTraitsBtn");
+const tableContainer = document.getElementById("tableContainer");
+
+
+// const trackBtn = document.getElementById("trackBtn");
+// const tbody = document.querySelector("#myTable1 tbody");
+// trackBtn.addEventListener("click", function () {
+// //select the hotbar element
+// //create a hotbar item
+// //tr,td,text,text,button
+// const row = document.createElement("tr");
+// const col1 = document.createElement("td");
+// const text1 = document.createElement("text");
+// const text2 = document.createElement("text");
+// const button1 = document.createElement("buttton");
+//});
+
+showTableBtn.addEventListener("click", function () {
+    console.log("clicked")
+    // Toggle the table's visibility
+    if ((tableContainer2.style.display === "none" || tableContainer2.style.display === "") && (tableContainer1.style.display === "block")) {
+        tableContainer2.style.display = "block";
+        tableContainer1.style.display = "none";
+    } 
+    else {
+     tableContainer2.style.display = "block";
+        tableContainer1.style.display = "none";
+    }
+});
+
+showStatsBtn.addEventListener("click", function () {
+    console.log("clicked")
+    // Toggle the table's visibility
+    if ((tableContainer1.style.display === "none" || tableContainer1.style.display === "") && (tableContainer2.style.display === "block")) {
+        tableContainer1.style.display = "block";
+        tableContainer2.style.display = "none";
+    } 
+    else {
+     tableContainer1.style.display = "block";
+        tableContainer2.style.display = "none";
+    }
+});
+
+</script>
+
+<script>
+    var savebtn = document.getElementById("saveBtn");
+    
+    savebtn.onclick = function() {
+        console.log("BUTTON PRESSED FOR SAVE CONNECTIONS BUTTON");
+}
+    
+
+</script>
+
+<script>  //This script handles the view connections modal funtionality
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+</script>
+
+<!-- <script>
+ 
+    readFiles();
+    
+
+    function handleCharacterCheckbox(checkbox){
+        //console.log("CHECK!");
+        //console.dir(checkbox);
+
+        //console.log("MASTER CHARACETER LIST");
+        //console.dir(masterCharacterList);
+
+        /*
+        getListOfSelectedCharacters();
+        update(adjustedPopulation);
+        */
+       updateData();
+       updateD3(currentWorkingData)
+    }
+
+    function handleSelectAll(checkbox) {
+        //console.log("SELECT ALL!!");
+        //console.dir(checkbox);
+
+        let checkboxes = document.getElementsByName("personCheckbox");
+        for(let i = 0; i < checkboxes.length; i++){
+            checkboxes[i].checked = checkbox.checked;
+        }
+        updateData();
+        updateD3(currentWorkingData)
+
+       // update(adjustedPopulation);
+    }
+
+
+
+    //something weird going on where the nodes get added to this same array
+    //I'm too lazy to figure it right now so I'll just skip over those things, I guess?
+    function createCheckboxesFromPersonData(characterData){
+        //console.log("createCheckboxesFromPersonData");
+        //console.dir(characterData);
+        let checkBoxDiv = document.getElementById("characterCheckboxes");
+        checkBoxDiv.innerHTML = ""; //clear it all out.
+        for(let i = 0; i < characterData.length; i++){
+            if(characterData[i].name === undefined) continue;
+            //console.log("person name: " + characterData[i].name);
+            let trimName = characterData[i].name.replace(/\s/g, "");
+            checkBoxDiv.innerHTML += `<input type="checkbox" name="personCheckbox" id="` + characterData[i].name + `" onchange='handleCharacterCheckbox(this);' value="` + trimName + `">` + characterData[i].name
+        }
+    }
+
+    function getRidOfWhiteSpace(stringToTrim){
+        return stringToTrim.replace(/\s/g, "");
+    }
+
+    function findAPatternPerson(reifiedPatterns, nameOfPattern){
+        //patterns should be teh "reified" thing
+        //the way that these work is that it checks patterns.
+        //right now the patterns are very simple and straight forward. whatever!
+        //we, uh... look at the selected people...
+        //see if they show up in anything...
+        //and if they do, we add them! By just, like, you know, checking the box and calling the same functions as like a click.
+        let potentialPersonList = [];
+        for (let i = 0; i < currentWorkingData.characters.length; i++) {
+            //go through each selected character... see if they have any friends...
+            let currentSelectedCharacter = currentWorkingData.characters[i].name;
+            for (let j = 0; j < reifiedPatterns.length; j++) {
+                let currentPattern = reifiedPatterns[j];
+                if (currentSelectedCharacter == currentPattern[0]) {
+                    //Hey, great, this person has a friend!
+                    let potentialPerson = currentPattern[1];
+                    //TODO: FIX THIS. I THINK MAYBE USING 'MAP' MIGHT BE THE WAY TO WORK WITH THIS...?
+                    if (currentWorkingData.characters.indexOf(potentialPerson) != -1) {
+                        console.log("uh oh, " + potentialFriend + " is already selected! Skip them!");
+                    }
+                    else {
+                        potentialPersonList.push(potentialPerson);
+                        console.log(currentSelectedCharacter + " is " + nameOfPattern + " with " + potentialPerson);
+                    }
+                }
+            }
+        }
+        console.log("here are all people!");
+        console.dir(potentialPersonList);
+
+        //only activate a person if there exists someone to activate!
+        if(potentialPersonList.length > 0){
+            let personToActivate = potentialPersonList[getRandomInt(potentialPersonList.length)];
+            let personCheckbox = document.getElementById(personToActivate);
+            personCheckbox.checked = true;
+            updateData();
+            updateD3(currentWorkingData)
+        }
+    }
+
+    function findAllPatternPeople(reifiedPatterns, nameOfPattern) {
+        //patterns should be teh "reified" thing
+        //the way that these work is that it checks patterns.
+        //right now the patterns are very simple and straight forward. whatever!
+        //we, uh... look at the selected people...
+        //see if they show up in anything...
+        //and if they do, we add them! By just, like, you know, checking the box and calling the same functions as like a click.
+        let allPeopleList = [];
+
+        for (let j = 0; j < reifiedPatterns.length; j++) {
+            allPeopleList.push(reifiedPatterns[j][0]);
+            allPeopleList.push(reifiedPatterns[j][1]);
+        }
+        
+        console.log("here are all people!");
+        console.dir(allPeopleList);
+
+        for(let i = 0; i < allPeopleList.length; i++){
+            let personToActivate = allPeopleList[i];
+            let personCheckbox = document.getElementById(personToActivate);
+            personCheckbox.checked = true;
+        }
+
+        updateData();
+        updateD3(currentWorkingData)
+        
+    }
+
+    function findAFriendPressed(){
+        findAPatternPerson(masterDataObject.patterns.friends.reified, "friends")
+    }
+
+    function findAllFriendsPressed(){
+        console.log("finding all friends...");
+        findAllPatternPeople(masterDataObject.patterns.friends.reified, "friends");
+    }
+
+    function findANemesisPressed() {
+        findAPatternPerson(masterDataObject.patterns.nemesis.reified, "nemesis")
+    }
+
+    function findAllNemesisPressed() {
+        findAllPatternPeople(masterDataObject.patterns.nemesis.reified, "nemesis");
+    }
+
+    function findARivalPressed() {
+        findAPatternPerson(masterDataObject.patterns.rivals.reified, "rival")
+    }
+
+    function findAllRivalsPressed() {
+        findAllPatternPeople(masterDataObject.patterns.rivals.reified, "rival");
+    }
+
+    function findAMutualLovePressed() {
+            findAPatternPerson(masterDataObject.patterns.mutual_romance.reified, "mutual love")
+    }
+
+    function findAllMutualLovesPressed() {
+        findAllPatternPeople(masterDataObject.patterns.mutual_romance.reified, "mutual love");
+    }
+
+    function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+</script> -->
+
+
+
+
+
