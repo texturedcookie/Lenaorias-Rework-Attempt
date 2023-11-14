@@ -1,4 +1,5 @@
   # WizActor Interface
+  This is a reworked attempt of the existing WizActor Interface prototype th create a better player experience for visualizing AI generated worlds
 
 Install the dependencies
 
