@@ -8,7 +8,7 @@
 ![Research Poster](https://github.com/texturedcookie/Tolmas-Project/blob/main/POSTER.jpg)
 
 
-#Set Up
+Set Up
 Install the dependencies
 
 ```bash
